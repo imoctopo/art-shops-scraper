@@ -4,6 +4,7 @@ from slugify import slugify
 
 class BrandsSpider(scrapy.Spider):
     name = 'coloranimal.brands'
+    allowed_domains = ['coloranimal.cl']
     start_urls = [
         'https://www.coloranimal.cl/mapa%20del%20sitio'
     ]
@@ -12,7 +13,7 @@ class BrandsSpider(scrapy.Spider):
         'FEED_URI': f'{name}.json',
         'FEED_FORMAT': 'json',
         'FEED_EXPORT_ENCODING': 'utf-8',
-        'MEMUSAGE_LIMIT_MB': 2048
+        'MEMUSAGE_LIMIT_MB': 512
     }
 
     def parse(self, response):
