@@ -130,3 +130,5 @@ dmypy.json
 
 # Pycharm
 .idea/
+/artshops/scrapinghub.yml
+/artshops/setup.py

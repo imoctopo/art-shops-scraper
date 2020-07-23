@@ -3,12 +3,13 @@ from slugify import slugify
 
 
 class CategoriesSpider(scrapy.Spider):
+    """Scraps categories and theirs children categories (recursively)."""
     name = 'coloranimal.categories'
     start_urls = [
         'https://www.coloranimal.cl/mapa%20del%20sitio'
     ]
     custom_settings = {
-        'USER_AGENT': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36',
+        'USER_AGENT': 'Googlebot/2.1 (+http://www.google.com/bot.html)',
         'FEED_URI': f'{name}.json',
         'FEED_FORMAT': 'json',
         'FEED_EXPORT_ENCODING': 'utf-8',
@@ -16,7 +17,7 @@ class CategoriesSpider(scrapy.Spider):
     }
 
     def parse(self, response):
-        """Parse implementation"""
+        """Parse implementation."""
         for li in response.xpath('//div[@class="row sitemap col-xs-12"]/div[2]/ul/li/ul/li'):
             print(li.xpath('./a/@href').get())
             cat = {
@@ -30,7 +31,7 @@ class CategoriesSpider(scrapy.Spider):
             yield cat
 
     def parse_children(self, category):
-        """Extract category's children recursively"""
+        """Extract category's children recursively."""
         data = []
         cat_children = category.xpath('./ul/li')
         for li in cat_children:

@@ -9,7 +9,7 @@ class BrandsSpider(scrapy.Spider):
         'https://www.coloranimal.cl/mapa%20del%20sitio'
     ]
     custom_settings = {
-        'USER_AGENT': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36',
+        'USER_AGENT': 'Googlebot/2.1 (+http://www.google.com/bot.html)',
         'FEED_URI': f'{name}.json',
         'FEED_FORMAT': 'json',
         'FEED_EXPORT_ENCODING': 'utf-8',
