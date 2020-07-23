@@ -19,7 +19,6 @@ class CategoriesSpider(scrapy.Spider):
     def parse(self, response):
         """Parse implementation."""
         for li in response.xpath('//div[@class="row sitemap col-xs-12"]/div[2]/ul/li/ul/li'):
-            print(li.xpath('./a/@href').get())
             cat = {
                 'name': li.xpath('normalize-space(./a/text())').get(),
                 'slug': slugify(li.xpath('./a/text()').get(), to_lower=True),

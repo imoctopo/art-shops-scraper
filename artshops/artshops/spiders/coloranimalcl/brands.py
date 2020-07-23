@@ -1,5 +1,4 @@
 import scrapy
-from slugify import slugify
 
 
 class BrandsSpider(scrapy.Spider):
@@ -18,11 +17,7 @@ class BrandsSpider(scrapy.Spider):
 
     def parse(self, response):
         """Parse implementation"""
+        brands = {}
         for li in response.xpath('//a[@id="manufacturer-page"]/../ul/li[position()>1]'):
-            print(li.xpath('./a/@href').get())
-            brand = {
-                'name': li.xpath('normalize-space(./a/text())').get(),
-                'slug': slugify(li.xpath('./a/text()').get(), to_lower=True),
-                'url': li.xpath('./a/@href').get(),
-            }
-            yield brand
+            brands[li.xpath('./a/@href').get()] = li.xpath('normalize-space(./a/text())').get()
+        yield brands
