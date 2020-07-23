@@ -34,7 +34,7 @@ class ProductsSpider(scrapy.Spider):
             yield response.follow(next_page_link, callback=self.parse_category_view)
 
     @staticmethod
-    def parse_product_view(self, response, **kwargs):
+    def parse_product_view(response, **kwargs):
         url = kwargs['url']
         name = response.xpath('//h1[@class="h1" and @itemprop="name"]/text()').get()
         price = response.xpath('//meta[@property="product:price:amount"]/@content').get()

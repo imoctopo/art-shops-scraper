@@ -132,3 +132,4 @@ dmypy.json
 .idea/
 /artshops/scrapinghub.yml
 /artshops/setup.py
+/artshops/*.json
